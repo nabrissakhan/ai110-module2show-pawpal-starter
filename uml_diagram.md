@@ -3,47 +3,49 @@
 ```mermaid
 classDiagram
   class Owner {
-    +String ownerId
-    +String name
-    +String preferredScheduleStyle
-    +int dailyAvailableMinutes
-    +addPet(pet)
-    +updatePreferences(style, minutes)
-    +getAllTasks()
+    +owner_id
+    +name
+    +preferred_schedule_style
+    +daily_available_minutes
+    +add_pet(pet)
+    +update_preferences(style, minutes)
+    +get_all_tasks()
   }
 
   class Pet {
-    +String petId
-    +String name
-    +String species
-    +int age
-    +String notes
-    +addTask(task)
-    +editTask(taskId, updates)
-    +removeTask(taskId)
-    +viewTasks()
-    +updateInfo(name, age, notes)
+    +pet_id
+    +name
+    +species
+    +age
+    +notes
+    +tasks
+    +add_task(task)
+    +edit_task(task_id, updates)
+    +remove_task(task_id)
+    +view_tasks()
+    +update_info(name, age, notes)
   }
 
   class Task {
-    +String taskId
-    +String title
-    +int durationMinutes
-    +int priority
-    +String preferredTime
-    +String status
-    +editTask(updates)
-    +markComplete()
+    +task_id
+    +title
+    +duration_minutes
+    +priority
+    +preferred_time
+    +status
+    +edit_task(updates)
+    +mark_complete()
   }
 
   class Scheduler {
-    +generateDailySchedule(owner)
-    +rankTasksByPriorityAndFit(tasks, availableMinutes)
-    +buildTimeline(tasks)
-    +explainPlan()
+    +generate_daily_schedule(owner)
+    +rank_tasks_by_priority_and_fit(tasks, available_minutes)
+    +build_timeline(tasks)
+    +explain_plan()
   }
 
-  Owner "1" o-- "1..*" Pet : owns
+  Owner "1" o-- "0..*" Pet : owns
   Pet "1" o-- "0..*" Task : has care tasks
-  Scheduler ..> Owner : uses preferences
-  Scheduler ..> Task : selects and orders
+  Scheduler ..> Owner : uses
+  Scheduler ..> Task : processes
+```
