@@ -2,15 +2,50 @@
 
 ## 1. System Design
 
+Three core actions that a user should be able to perform in PawPal+ are the following:
+- Owner and pet information should be able to be entered.
+- Manage and add pet care tasks that include and are not limited to:
+    - Feeding
+    - Walks
+    - Medications
+    - Grooming
+    - Enrichment activities
+- Generate and be able to view the plan for daily care on the basis of priority tasks, time that is available, and other preferences from the owner.
+
 **a. Initial design**
 
+My initial UML design included four main classes: Owner, Pet, Task, and Scheduler. The Owner class stores owner information, scheduling preferences, available time, and the pets associated with that owner. The Pet class stores information about each pet and the care tasks assigned to it. The Task class represents an individual pet care activity, including title, duration, priority, preferred time, and status. The Scheduler class is responsible for organizing tasks into a daily plan based on available time, priority, and preferences.
+
+I chose this structure because it separates responsibilities clearly. Owner manages pets, Pet manages tasks, Task represents an individual care activity, and Scheduler handles the planning logic.
+
 - Briefly describe your initial UML design.
+My initial UML design includes the following four main classes: Owner, Pet, Task, and Scheduler.
+- Owner:
+  - Attributes: name, available_time, preferences, pets
+  - Methods: add_pet(), get_all_tasks(), update_preferences()
+
+- Pet:
+  - Attributes: name, species, age, tasks
+  - Methods: add_task(), edit_task(), remove_task(), get_tasks()
+
+- Task:
+  - Attributes: description, duration, priority, category, preferred_time, completed
+  - Methods: mark_complete(), update_task()
+
+- Scheduler:
+  - Methods: generate_daily_plan(), sort_tasks(), filter_tasks(), explain_plan(), detect_conflicts()
+
 - What classes did you include, and what responsibilities did you assign to each?
 
 **b. Design changes**
 
 - Did your design change during implementation?
+
+Yes, my design changed slightly during the skeleton stage.
+
 - If yes, describe at least one change and why you made it.
+
+ Originally, task management responsibilities were placed in the Owner class, but I moved them to the Pet class because tasks belong directly to a specific pet. I also added a tasks list to the Pet class and simplified the Scheduler so it generates a schedule from the Owner object instead of requiring separate pet and task inputs. These changes made the design more modular and easier to implement.
 
 ---
 
