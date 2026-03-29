@@ -32,6 +32,7 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+
 ### Suggested workflow
 
 1. Read the scenario carefully and identify requirements and edge cases.
@@ -41,3 +42,26 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Smarter Scheduling
+
+The scheduler prioritizes tasks based on importance and ensures that the total scheduled time does not exceed the owner's available minutes. Higher-priority tasks are selected first, and if multiple tasks have the same priority, shorter tasks are preferred to maximize efficiency.
+
+This approach ensures that critical pet care activities such as feeding and medication are always included in the daily plan.
+
+## Testing PawPal+
+
+To run the automated tests:
+
+```bash
+py -m pytest
+```
+
+These tests verify core system behaviors, including:
+
+- marking a task as complete updates its status correctly
+- adding a task increases a pet's task list
+- the scheduler respects the owner's available time
+- higher-priority tasks are selected before lower-priority ones
+
+**Confidence Level:** ★★★★☆ (4/5)
